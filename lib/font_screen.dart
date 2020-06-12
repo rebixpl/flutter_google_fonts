@@ -7,7 +7,6 @@ class FontScreen extends StatefulWidget {
 }
 
 class _FontScreenState extends State<FontScreen> {
-
   String font = 'Arapey';
 
   List<String> fonts = ['Arvo', 'Prata', 'Orbitron', 'Ultra', 'Monoton'];
@@ -31,9 +30,23 @@ class _FontScreenState extends State<FontScreen> {
               Text(
                 'Google Fonts',
                 style: GoogleFonts.getFont(
-                  "Arvo",
+                  font,
                   fontSize: 32.0,
                 ),
+              ),
+              ListView.separated(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return FlatButton(
+                    onPressed: () => setState(() {
+                      font = fonts[index];
+                    }),
+                    child: Text(fonts[index]),
+                  );
+                },
+                separatorBuilder: (context, index) => Divider(),
+                itemCount: fonts.length,
               ),
             ],
           ),
