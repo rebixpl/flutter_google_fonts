@@ -16,16 +16,14 @@ class _FontScreenState extends State<FontScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("Fonts")),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
                 'Google Fonts',
-                style: GoogleFonts.macondo(
-                  fontSize: 32.0,
-                ),
+                style: TextStyle(fontSize: 32.0,),
               ),
               Text(
                 'Google Fonts',
@@ -39,10 +37,19 @@ class _FontScreenState extends State<FontScreen> {
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return FlatButton(
+                    padding: EdgeInsets.all(8.0),
                     onPressed: () => setState(() {
                       font = fonts[index];
                     }),
-                    child: Text(fonts[index]),
+                    child: Text(
+                      fonts[index],
+                      style: GoogleFonts.getFont(
+                        fonts[index],
+                        color: Colors.white,
+                        fontSize: 32.0,
+                      ),
+                    ),
+                    color: Colors.black,
                   );
                 },
                 separatorBuilder: (context, index) => Divider(),
